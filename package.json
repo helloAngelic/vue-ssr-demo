@@ -7,12 +7,13 @@
     "build:server": "cross-env WEBPACK_TARGET=node vue-cli-service build --mode server",
     "build:client": "vue-cli-service build",
     "build": "yarn build:client && yarn build:server",
-    "start": "node ./server/index.js"
+    "start": "nodemon ./server/index.js"
   },
   "dependencies": {
     "cli-color": "^2.0.0",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
+    "nodemon": "^2.0.12",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vue-server-renderer": "^2.6.14",
