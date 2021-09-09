@@ -1,19 +1,35 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <button @click="saveData">保存</button>
-    <button @click="getData">弹框</button>
+    <button @click="saveLocalStorageData">保存 localStorage</button>
+    <button @click="getLocalStorageData">显示 localStorage</button>
+    <br />
+    <div>
+      "app/getAaa":
+      {{ $store.getters["app/getAaa"] }}
+    </div>
+    <br />
+    <input type="text" v-model="aaa" />
+    <button @click="setStoreData">修改 store</button>
   </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      aaa: "",
+    };
+  },
   methods: {
-    saveData() {
+    saveLocalStorageData() {
       window.localStorage.setItem("abc", JSON.stringify({ aaa: "111" }));
     },
-    getData() {
+    getLocalStorageData() {
       let data = window.localStorage.getItem("abc");
       alert(data);
+    },
+    setStoreData() {
+      this.$store.dispatch("app/setAaa", this.aaa);
     },
   },
 };
