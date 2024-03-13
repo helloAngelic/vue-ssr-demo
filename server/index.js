@@ -22,6 +22,12 @@ const renderer = createBundleRenderer(serverBundle, {
 server.use(express.static(path.resolve(__dirname, '../dist/client'), {
     index: false // 不设置为 false 会导致无法查看网页源代码，搜索引擎将无法爬取
 }));
+// // 请求超时中间件
+// server.use(function (rqe, res, next) {
+//     res.setTimeout(120 * 1000, function () {
+//         return res.status(408).send('请求超时')
+//     })
+// })
 
 // 通用服务 ==> 查看网页都是 GET 请求
 server.get('*', async (req, res) => {
@@ -32,6 +38,7 @@ server.get('*', async (req, res) => {
             metas: ``, // 写网站关键词，网站描述，给爬虫看
         }
         const html = await renderer.renderToString(context);
+        console.log('3', context);
         res.send(html);
     } catch (error) {
         console.log(clc.red.bold(error));

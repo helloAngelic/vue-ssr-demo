@@ -1,13 +1,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+
+// 解决跳转重复路由报错问题的代码
+const routerPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function (location) {
+  return routerPush.call(this, location).catch(err => { })
+};
 
 Vue.use(VueRouter)
 
-const routes = [{
+const routes = [
+  {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () => import( /* webpackChunkName: "about" */ "../views/Home.vue")
   },
   {
     path: '/about',
@@ -16,6 +22,11 @@ const routes = [{
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import( /* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/print',
+    name: 'print',
+    component: () => import( /* webpackChunkName: "about" */ '../views/Print.vue')
   }
 ]
 
