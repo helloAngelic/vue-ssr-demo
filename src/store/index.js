@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { getAndDelData } from "../services/index"
 
 Vue.use(Vuex)
 
@@ -39,7 +40,8 @@ export default function createStore() {
     },
     actions: {
       initData({ commit, state }, bgId) {
-        
+        console.log(4);
+        return getAndDelData({ commit, state })
       }
     }
   })

@@ -13,14 +13,15 @@ export default context => new Promise((resolve, reject) => {
         if (!matchedComponents.length) {
             return reject({ code: 404 })
         }
+        console.log(1);
         // resolve(app);
         Promise.all(matchedComponents.map(Component => {
             if (Component.asyncData) {
-                const result = Component.asyncData({
+                console.log(2);
+                return Component.asyncData({
                     store,
                     route: router.currentRoute
                 })
-                return result
             }
         })).then(() => {
             console.log('complete');

@@ -13,6 +13,8 @@
     "axios": "^1.6.7",
     "cli-color": "^2.0.0",
     "core-js": "^3.6.5",
+    "crypto-js": "^4.2.0",
+    "dayjs": "^1.11.10",
     "element-ui": "^2.15.14",
     "express": "^4.17.1",
     "nodemon": "^2.0.12",
@@ -29,6 +31,7 @@
     "@vue/cli-service": "~4.5.0",
     "cross-env": "^7.0.3",
     "lodash.merge": "^4.6.2",
+    "postcss-px-to-viewport-update": "1.2.0",
     "sass": "^1.71.1",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
