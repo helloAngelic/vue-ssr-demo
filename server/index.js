@@ -38,7 +38,7 @@ server.get('*', async (req, res) => {
             metas: ``, // 写网站关键词，网站描述，给爬虫看
         }
         const html = await renderer.renderToString(context);
-        console.log('3', context);
+        console.log('send');
         res.send(html);
     } catch (error) {
         console.log(clc.red.bold(error));

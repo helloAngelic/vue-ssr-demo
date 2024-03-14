@@ -14,7 +14,6 @@ export default context => new Promise((resolve, reject) => {
             return reject({ code: 404 })
         }
         // resolve(app);
-        console.log('1',context);
         Promise.all(matchedComponents.map(Component => {
             if (Component.asyncData) {
                 const result = Component.asyncData({
@@ -24,7 +23,7 @@ export default context => new Promise((resolve, reject) => {
                 return result
             }
         })).then(() => {
-            console.log('2',context);
+            console.log('complete');
             // 在所有预取钩子(preFetch hook) resolve 后，
             // 我们的 store 现在已经填充入渲染应用程序所需的状态。
             // 当我们将状态附加到上下文，
