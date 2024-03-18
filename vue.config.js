@@ -8,22 +8,22 @@ const target = TARGET_NODE ? "server" : "client";
 
 module.exports = {
     outputDir: `./dist/${target}`,
-    devServer: {
-        port: 9527,
-        open: true,
-        // client: {
-        //     overlay: false
-        // },
-        // historyApiFallback: true,
-        // // allowedHosts: 'all',
-        proxy: {
-            '/': {
-                target: 'http://172.22.128.151:36812/api',
-                changeOrigin: true,
-                ws: false,
-            }
-        }
-    },
+    // devServer: {
+    //     port: 9527,
+    //     open: true,
+    //     // client: {
+    //     //     overlay: false
+    //     // },
+    //     // historyApiFallback: true,
+    //     // // allowedHosts: 'all',
+    //     proxy: {
+    //         '/': {
+    //             target: 'http://172.22.128.151:36812/api',
+    //             changeOrigin: true,
+    //             ws: false,
+    //         }
+    //     }
+    // },
     configureWebpack: _ => ({
         entry: `./entry.${target}.js`,
         output: {

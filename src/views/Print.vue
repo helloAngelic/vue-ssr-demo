@@ -1,20 +1,17 @@
 <template>
-  <main class="print">
-    <section id="page1">
+  <div class="print">
+    <!-- 首页 报告说明 目录 风险概述 税局风险提示-->
+    <div id="page1">
       <!-- 首页 -->
-      <header class="banner">
+      <div class="banner">
         <img src="../assets/print_banner.png" alt="" class="banner-img" />
-        <h1 class="banner-title">
-          <img src="../assets/print_banner_title.png" alt="" />
-        </h1>
-        <p class="banner-text">
-          {{ detailData.qymc }}
-        </p>
-        <p class="banner-time">报告生成时间：{{ detailData.bgsj }}</p>
+        <img src="../assets/print_banner_title.png" alt="" class="banner-title" />
+        <div class="banner-text">{{ detailData.qymc }}</div>
+        <div class="banner-time">报告生成时间：{{ detailData.bgsj }}</div>
         <img src="../assets/print_banner_time.png" alt="" class="banner-time-img" />
-      </header>
+      </div>
       <!-- 报告说明 -->
-      <section class="container">
+      <div class="container">
         <h1 class="title">
           <span
             >报告说明
@@ -33,67 +30,78 @@
             爱信诺恪守独立、客观和公正的原则，为报告所涉主体提供专业信用评估报告。除非特别声明，本报告信息未经复核，爱信诺力求但不保证报告数据的准确性、时效性和完整性。在任何情况下，爱信诺不对因使用本报告而产生的任何后果承担法律责任，不承担由于因此而引起的损失和损害。
           </p>
         </div>
-        <!-- 目录 -->
-      </section>
-    </section>
-    <!-- 风险概述 -->
-    <section id="page2" class="container">
-      <h1 class="title">
-        <span
-          >一、风险概述
-          <img src="../assets/print_content_title.png" alt="" class="title-img" />
-        </span>
-      </h1>
-      <div class="page2-table">
-        <table width="100%" class="table1">
-          <colgroup>
-            <col width="33.3%" />
-            <col width="33.3%" />
-            <col width="33.3%" />
-          </colgroup>
-          <thead>
-            <tr>
-              <th>风险类型</th>
-              <th>检测项</th>
-              <th>风险数</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(item, index) in overviewList" :key="index" :style="index % 2 === 1 ? '' : 'background:#f5f5f5'">
-              <td>{{ item.fxlx }}</td>
-              <td>{{ item.jcx }}</td>
-              <td :class="{ fx: true, 'fx-normal': item.fxs == 0 }">{{ item.fxs }}</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <table width="100%" class="table2">
-          <colgroup>
-            <col width="4%" />
-            <col width="48%" />
-            <col width="48%" />
-          </colgroup>
-          <tbody>
-            <tr>
-              <th colspan="3">税务风险</th>
-            </tr>
-            <tr v-for="(item, index) in overviewTableArr" :key="index">
-              <td v-if="item.isTh" :rowspan="item.thRowSpan" :class="item.thClass">{{ item.thTitle }}</td>
-              <template v-if="item.isBlock">
-                <td rowspan="1" colspan="2" class="table-no-data">暂无风险</td>
-              </template>
-              <template v-else>
-                <td v-if="item.isTd" :rowspan="item.tdRowSpan" :class="item.tdClass">{{ item.fxlxmc }}</td>
-                <td :class="item.tdClass">
-                  <a href="javascript:void(0)" @click="goAnchor(`${bgId}${item.id}`)" class="a_xhx">{{ item.fxdmc }}</a>
-                </td>
-              </template>
-            </tr>
-          </tbody>
-        </table>
       </div>
-    </section>
-  </main>
+      <!-- 目录 -->
+    </div>
+    <!-- 风险概述 -->
+    <div id="page2">
+      <div class="container">
+        <h1 class="title">
+          <span
+            >一、风险概述
+            <img src="../assets/print_content_title.png" alt="" class="title-img" />
+          </span>
+        </h1>
+        <div class="content">
+          <p class="text">
+            <span>本次报告生成时间为 {{ detailData.bgsjShow }}，通过对发票、财务报表、纳税申报表的综合分析检测结果如下:</span>
+          </p>
+          <div class="page2-table">
+            <table width="100%" class="table1">
+              <colgroup>
+                <col width="33.3%" />
+                <col width="33.3%" />
+                <col width="33.3%" />
+              </colgroup>
+              <tbody>
+                <tr>
+                  <th>风险类型</th>
+                  <th>检测项</th>
+                  <th>风险数</th>
+                </tr>
+                <tr v-for="(item, index) in overviewList" :key="index" :style="index % 2 === 1 ? '' : 'background:#f5f5f5'">
+                  <td>{{ item.fxlx }}</td>
+                  <td>{{ item.jcx }}</td>
+                  <td :class="{ fx: true, 'fx-normal': item.fxs == 0 }">{{ item.fxs }}</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table width="100%" class="table2">
+              <colgroup>
+                <col width="4%" />
+                <col width="48%" />
+                <col width="48%" />
+              </colgroup>
+              <tbody>
+                <tr>
+                  <th colspan="3">税务风险</th>
+                </tr>
+                <tr v-for="(item, index) in overviewTableArr" :key="index">
+                  <td v-if="item.isTh" :rowspan="item.thRowSpan" :class="item.thClass">{{ item.thTitle }}</td>
+                  <template v-if="item.isBlock">
+                    <td rowspan="1" colspan="2" class="table-no-data">暂无风险</td>
+                  </template>
+                  <template v-else>
+                    <td v-if="item.isTd" :rowspan="item.tdRowSpan" :class="item.tdClass">{{ item.fxlxmc }}</td>
+                    <td :class="item.tdClass">
+                      <a href="javascript:void(0)" @click="goAnchor(`${bgId}${item.id}`)" class="a_xhx">{{ item.fxdmc }}</a>
+                    </td>
+                  </template>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 税务风险提示 -->
+    <div id="page3"></div>
+    <!-- 税局风险提示 -->
+    <div id="page4"></div>
+    <!-- 业务伙伴风险 -->
+    <div id="page5"></div>
+  </div>
 </template>
 
 <script>
@@ -158,10 +166,6 @@ body {
   width: 517px;
   height: 62px;
 }
-.banner-title img {
-  width: 100%;
-  height: 100%;
-}
 .banner-text {
   position: absolute;
   top: 266px;
@@ -184,7 +188,7 @@ body {
 }
 .banner-time-img {
   position: absolute;
-  top: 400px;
+  top: 377px;
   left: 200px;
   width: 500px;
 }
