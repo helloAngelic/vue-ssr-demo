@@ -4,11 +4,12 @@
     <div id="page1">
       <!-- 首页 -->
       <div class="banner">
-        <img src="../assets/print_banner.png" alt="" class="banner-img" />
+        <!-- <img src="../assets/print_banner.png" alt="" class="banner-img" />
         <img src="../assets/print_banner_title.png" alt="" class="banner-title" />
         <div class="banner-text">{{ detailData.qymc }}</div>
         <div class="banner-time">报告生成时间：{{ detailData.bgsj }}</div>
-        <img src="../assets/print_banner_time.png" alt="" class="banner-time-img" />
+        <img src="../assets/print_banner_time.png" alt="" class="banner-time-img" /> -->
+        <h2>本地路由</h2>
       </div>
       <!-- 报告说明 -->
       <div class="container">

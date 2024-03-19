@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 // const dayjs = require('dayjs')
 const headers = {
   // 'X-Access-Token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MTAzODI3NjcsImV4cCI6MTcxMDQ2OTE2NywiaWF0IjoxNzEwMzgyNzY3LCJ1c2VySWQiOjEwMDAwMDEwMDgzLCJsb2dpbklkZW50aWZpY2F0aW9uIjoiMjA4ZGM0NmVhMzQzNDQ1OTk1MWQ5N2E1MTJjM2RhOTgifQ.a3Lkx7lE6yMczQA_jZZ3uWhoqSJM5OXuC9evj0pf208',
-  'X-Access-Token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MTA3NDIzMjQsImV4cCI6MTcxMDgyODcyNCwiaWF0IjoxNzEwNzQyMzI0LCJ1c2VySWQiOjEwMDAwMDEwMDgzLCJsb2dpbklkZW50aWZpY2F0aW9uIjoiM2Y3ZDRiZmJkMzIzNDEzOWFjOTExNmU4N2E1MjYwZTYifQ.4a5M8ONYUVnjYXXBVhk1-SZdYCtdGNUG2LTuckKE2Ic',
+  'X-Access-Token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MTA4MzA1MzgsImV4cCI6MTcxMDkxNjkzOCwiaWF0IjoxNzEwODMwNTM4LCJ1c2VySWQiOjEwMDAwMDEwMDgzLCJsb2dpbklkZW50aWZpY2F0aW9uIjoiY2JmZTRjNDdiMDUxNDVkY2JkYmI2MmY4MjMwMzNiZjcifQ.7IffRZsw92wtHdcXk6KRVLrLgCRkMMFou1MS4NENGN8',
 
 
 }
@@ -115,7 +115,7 @@ export function getAndDelData({ commit, state }) {
       })
       resolve(6)
     }).catch(err => {
-      console.log(err);
+      // console.log(err);
     })
   })
 }

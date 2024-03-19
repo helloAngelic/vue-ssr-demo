@@ -30,7 +30,8 @@ server.use(express.static(path.resolve(__dirname, '../dist/client'), {
 // })
 
 // 通用服务 ==> 查看网页都是 GET 请求
-server.get('*', async (req, res) => {
+server.get('/printPDF', async (req, res) => {
+    console.log(req);
     try {
         const context = {
             url: req.url, // 请求 url ==> router.push(url)

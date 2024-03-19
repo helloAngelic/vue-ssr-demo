@@ -11,9 +11,14 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/printPDF',
     name: 'Home',
     component: () => import( /* webpackChunkName: "about" */ "../views/Home.vue")
+  },
+  {
+    path: '/print',
+    name: 'print',
+    component: () => import(/* webpackChunkName: "about" */ "../views/Print.vue")
   }
 ]
 

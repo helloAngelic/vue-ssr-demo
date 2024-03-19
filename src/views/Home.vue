@@ -93,16 +93,25 @@
         </table>
       </div>
     </section>
+
+    <div id="download" v-if="iconIsShow">
+      <span>下载</span>
+    </div>
   </main>
 </template>
 
 <script>
 export default {
   asyncData({ store, route }) {
-    console.log(3);
-    return store.dispatch("initData");
+    console.log(route);
+    return store.dispatch("initData", route.query);
   },
   name: "Home",
+  data() {
+    return {
+      // iconIsShow: false,
+    };
+  },
   computed: {
     detailData() {
       return this.$store.state.detailData || {};
@@ -112,6 +121,9 @@ export default {
     },
     overviewTableArr() {
       return this.$store.state.overviewTableArr || [];
+    },
+    iconIsShow() {
+      return this.$store.state.iconIsShow || false;
     },
   },
   created() {

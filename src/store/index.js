@@ -14,6 +14,7 @@ export default function createStore() {
       bureauData: undefined,// 税局风险提示
       relatedPartyData: undefined,// 业务伙伴风险
       taxationData: undefined,// 税务风险F
+      iconIsShow: false,
     },
     mutations: {
       set_bgId(state, data) {
@@ -37,9 +38,18 @@ export default function createStore() {
       set_taxationData(state, data) {
         state.taxationData = data
       },
+      set_iconIsShow(state, data) {
+        state.iconIsShow = data
+      }
     },
     actions: {
-      initData({ commit, state }, bgId) {
+      initData({ commit, state }, query) {
+        const { id, down } = query
+        if (down == 'true') {
+          commit('set_iconIsShow', true)
+        } else {
+          commit('set_iconIsShow', false)
+        }
         console.log(4);
         return getAndDelData({ commit, state })
       }
