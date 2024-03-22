@@ -6,11 +6,11 @@ import dayjs from "dayjs";
 // const dayjs = require('dayjs')
 const headers = {
   // 'X-Access-Token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MTAzODI3NjcsImV4cCI6MTcxMDQ2OTE2NywiaWF0IjoxNzEwMzgyNzY3LCJ1c2VySWQiOjEwMDAwMDEwMDgzLCJsb2dpbklkZW50aWZpY2F0aW9uIjoiMjA4ZGM0NmVhMzQzNDQ1OTk1MWQ5N2E1MTJjM2RhOTgifQ.a3Lkx7lE6yMczQA_jZZ3uWhoqSJM5OXuC9evj0pf208',
-  'X-Access-Token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MTA4MzA1MzgsImV4cCI6MTcxMDkxNjkzOCwiaWF0IjoxNzEwODMwNTM4LCJ1c2VySWQiOjEwMDAwMDEwMDgzLCJsb2dpbklkZW50aWZpY2F0aW9uIjoiY2JmZTRjNDdiMDUxNDVkY2JkYmI2MmY4MjMwMzNiZjcifQ.7IffRZsw92wtHdcXk6KRVLrLgCRkMMFou1MS4NENGN8',
+  'X-Access-Token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE3MTEwNzIyNzAsImV4cCI6MTcxMTE1ODY3MCwiaWF0IjoxNzExMDcyMjcwLCJ1c2VySWQiOjEzNjcsImxvZ2luSWRlbnRpZmljYXRpb24iOiJkM2Y4NDA0OTFmYTg0MDI0OTc4MWQyMGZjMDM3ZWVhZiJ9.zrGABi36FtblTqYJzhd3vsDjFoklegnQs6uVmfPcfNM',
 
 
 }
-const baseUrl = 'http://172.22.128.151:36812/api'
+const baseUrl = 'https://nqa-pre.aisino.cn/api'
 // const baseUrl = ''
 // 加解密
 const AES_KEY = '1234567890hijklm', IV = '1234567890abcdef';
@@ -85,6 +85,7 @@ export function getAndDelData({ commit, state }) {
   return new Promise((resolve, reject) => {
     Promise.all([getDetail(), getARiskOverview()]).then(promise => {
       console.log(6);
+      console.log(promise);
       promise.forEach(res => {
         if (res.status == 200) {
           let urlArr = res.config.url.split('/')
@@ -127,24 +128,63 @@ function dealOverViewData(result) {
     {
       thTitle: '高风险',
       thClass: 'table-title print-bgA04F66',
+      thStyle: `min-height: 200px;
+      width: 100px;
+      line-height: 100px;
+      font-size: 30px;
+      font-weight: bold;
+      color: #ffffff;
+      writing-mode: vertical-rl;
+      text-align: center;
+      letter-spacing: 5px;
+      font-weight: bold;
+      background-color: #a04f66;
+      `,
       thRowSpan: 1,
       tdClass: 'print-bgFCF9FA',
+      tdStyle: 'background-color: #fcf9fa;',
       tdRowSpan: 1,
       listName: 'highList',
     },
     {
       thTitle: '中风险',
       thClass: 'table-title print-bg9E6A4E',
+      thStyle: `min-height: 200px;
+      width: 100px;
+      line-height: 100px;
+      font-size: 30px;
+      font-weight: bold;
+      color: #ffffff;
+      writing-mode: vertical-rl;
+      text-align: center;
+      letter-spacing: 5px;
+      font-weight: bold;
+      background-color: #9e6a4e;
+      `,
       thRowSpan: 1,
       tdClass: 'print-bgFCFAF9',
+      tdStyle: 'background-color: #fcfaf9;',
       tdRowSpan: 1,
       listName: 'mediumList',
     },
     {
       thTitle: '低风险',
       thClass: 'table-title print-bg9F8D4F',
+      thStyle: `min-height: 200px;
+      width: 100px;
+      line-height: 100px;
+      font-size: 30px;
+      font-weight: bold;
+      color: #ffffff;
+      writing-mode: vertical-rl;
+      text-align: center;
+      letter-spacing: 5px;
+      font-weight: bold;
+      background-color: #9f8d4f;
+      `,
       thRowSpan: 1,
       tdClass: 'print-bgFCFBF9',
+      tdStyle: 'background-color: #fcfbf9;',
       tdRowSpan: 1,
       listName: 'lowList',
     },
@@ -166,9 +206,9 @@ function dealOverViewData(result) {
     let listName = elem.listName
     if (result[listName].length) {
       let thTitle = elem.thTitle
-      let thClass = elem.thClass
+      let thStyle = elem.thStyle
       let thRowSpan = result[listName].length
-      let tdClass = elem.tdClass
+      let tdStyle = elem.tdStyle
       let currentFxlx
       result[listName].forEach((item, index) => {
         item['tdRowSpan'] = 1
@@ -183,18 +223,18 @@ function dealOverViewData(result) {
         item['isTh'] = index === 0 ? true : false
         item['isBlock'] = false
         item['thTitle'] = thTitle
-        item['thClass'] = thClass
+        item['thStyle'] = thStyle
         item['thRowSpan'] = thRowSpan
-        item['tdClass'] = index % 2 === 1 ? "" : tdClass
+        item['tdStyle'] = index % 2 === 1 ? "" : tdStyle
       })
       overviewTableArr.push(...result[listName])
     } else {
-      let thClass = elem.thClass
+      let thStyle = elem.thStyle
       overviewTableArr.push({
         ...elem,
         isTh: true,
         isBlock: true,
-        thClass: thClass
+        thStyle: thStyle
       })
     }
   })
